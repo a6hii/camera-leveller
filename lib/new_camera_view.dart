@@ -31,6 +31,7 @@ class _NewCameraViewState extends ConsumerState<NewCameraView> {
     Colors.red,
     Colors.redAccent,
   ];
+  int a = 0;
   var correctColors = [
     Colors.green,
     Colors.greenAccent,
@@ -160,20 +161,14 @@ class _NewCameraViewState extends ConsumerState<NewCameraView> {
         ),
         // if (getHBackgroundColor() == Colors.green ||
         //     getVBackgroundColor() == Colors.green)
-        AnimatedOpacity(
-          opacity: getHBackgroundColor() == Colors.green ||
-                  getVBackgroundColor() == Colors.green
-              ? 1
-              : 0,
-          duration: Duration.zero,
-          child: Padding(
+        if (a == 1)
+          Padding(
             padding: const EdgeInsets.all(16.0),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: FloatingActionButton(onPressed: () {}),
             ),
           ),
-        ),
       ],
     );
   }
@@ -196,8 +191,14 @@ class _NewCameraViewState extends ConsumerState<NewCameraView> {
     // Change the color of the VerticalDivider widgets when aligned with LinePainter
     if (isAlignedWithV1) {
       print("isAlignedWithV1: $isAlignedWithV1");
+      setState(() {
+        a = 1;
+      });
       return Colors.greenAccent; // Change color for V1
     } else {
+      setState(() {
+        a = 0;
+      });
       // print("bad: $isAlignedWithV1");
       return Colors.white; // Default color
     }
@@ -214,9 +215,15 @@ class _NewCameraViewState extends ConsumerState<NewCameraView> {
     // Change the color of the VerticalDivider widgets when aligned with LinePainter
     if (isAlignedWithV1) {
       print("isAlignedWithV1: $isAlignedWithV1");
+      setState(() {
+        a = 1;
+      });
       return Colors.greenAccent; // Change color for V1
     } else {
       // print("bad: $isAlignedWithV1");
+      setState(() {
+        a = 0;
+      });
       return Colors.white; // Default color
     }
   }
